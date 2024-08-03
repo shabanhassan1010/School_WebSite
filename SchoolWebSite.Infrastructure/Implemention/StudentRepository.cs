@@ -26,7 +26,7 @@ namespace SchoolWebSite.Infrastructure
         #region Handles Methods
         public async Task<List<Student>> GetAllStudentAsync()
         {
-            return await _applictionDBContext.students.ToListAsync();
+            return await _applictionDBContext.students.Include(x => x.Department).ToListAsync();
         }
         #endregion
     }
