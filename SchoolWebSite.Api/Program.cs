@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SchoolWebSite.Infrastructure.Data;
 using SchoolWebSite.Infrastructure;
 using SchoolWebSite.Services;
+using SchoolWebSite.Core;
 
 namespace SchoolWebSite.Api
 {
@@ -30,7 +31,7 @@ namespace SchoolWebSite.Api
             #region Dependency Injection
             builder.Services.AddInfrastructureDependencies();
             builder.Services.AddServiceDependencies();
-
+            builder.Services.AddCoreDependencies();
             #endregion
 
 
