@@ -18,9 +18,9 @@ namespace SchoolWebSite.Infrastructure
         #endregion
 
         #region Constructor
-        public StudentRepository(ApplictionDBContext applictionDBContext):base(applictionDBContext)
+        public StudentRepository(ApplictionDBContext dBContext):base(dBContext) //in GenericRepositoryAsync Constructor
         {
-            _students = applictionDBContext.Set<Student>();
+            _students = dBContext.Set<Student>();
         }
         #endregion
 

@@ -7,6 +7,7 @@ namespace SchoolWebSite.Core.Mapping.Students
         public StudentProfile()
         {
             GetStudentListMapping();
+            GetStudentByIdMapping();
         }
     }
 }

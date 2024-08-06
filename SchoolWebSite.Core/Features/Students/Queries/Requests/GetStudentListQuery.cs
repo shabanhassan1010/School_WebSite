@@ -1,12 +1,12 @@
-﻿using Azure;
+﻿#region
 using MediatR;
-using SchoolProject.Data.Entities;
 using SchoolWebSite.Core.Bases;
 using SchoolWebSite.Core.Features.Students.Queries.Responses;
+#endregion
 
 namespace SchoolWebSite.Core.Features.Students.Queries.Models
 {
-    public class GetStudentListQuery : IRequest<SchoolWebSite.Core.Bases.Response<List<GetStudentListResponse>>>
+    public class GetStudentListQuery : IRequest<Response<List<GetSingleStudentResponse>>>
     {
     }
 }

@@ -1,4 +1,5 @@
 ﻿#region
+using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Entities;
 using SchoolWebSite.Infrastructure.Repositories;
 using SchoolWebSite.Services.AbstractMethods;
@@ -24,6 +25,14 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
         public async Task<List<Student>> GetStudentListAsync()
         {
             return await _studentRepository.GetAllStudentAsync();
+        }
+
+        public async Task<Student> GetStudentByIdAsync(int id)
+        {
+            var StudentId = await _studentRepository.GetTableNoTracking()
+                .Include(x => x.Department)
+                .Where(x => x.StudID == id).FirstOrDefaultAsync();
+            return StudentId;
         }
         #endregion
     }

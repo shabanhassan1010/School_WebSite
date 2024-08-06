@@ -1,14 +1,17 @@
-﻿#region
+﻿using Microsoft.Extensions.Options;
 using SchoolProject.Data.Entities;
 using SchoolWebSite.Core.Features.Students.Queries.Responses;
-#endregion
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-
-namespace SchoolWebSite.Core.Mapping.Students     // The same namespace which is exist in ( StudentProfile : Profile ) class
+namespace SchoolWebSite.Core.Mapping.Students
 {
     public partial class StudentProfile
     {
-        public void GetStudentListMapping()
+        public void GetStudentByIdMapping()
         {
             CreateMap<Student, GetSingleStudentResponse>()
                 .ForMember(dest => dest.DepartmentName, options => options.MapFrom(src => src.Department.DName));
@@ -17,5 +20,4 @@ namespace SchoolWebSite.Core.Mapping.Students     // The same namespace which is
         }
     }
 }
-
 
