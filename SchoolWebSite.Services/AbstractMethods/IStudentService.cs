@@ -6,6 +6,7 @@ namespace SchoolWebSite.Services.AbstractMethods
     {
         public Task<List<Student>> GetStudentListAsync();
         public Task<Student> GetStudentByIdAsync(int id);
+        public Task<string> AddAysnc(Student student);
 
     }
 }

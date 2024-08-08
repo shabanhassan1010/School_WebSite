@@ -1,6 +1,4 @@
-﻿
-
-namespace SchoolWebSite.Core.Features.Students.Queries.Responses
+﻿namespace SchoolWebSite.Core.Features.Students.Queries.Responses
 {
     public class GetStudentListResponse
     {

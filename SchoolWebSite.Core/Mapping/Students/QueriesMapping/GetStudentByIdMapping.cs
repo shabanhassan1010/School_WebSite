@@ -1,11 +1,7 @@
-﻿using Microsoft.Extensions.Options;
+﻿#region
 using SchoolProject.Data.Entities;
 using SchoolWebSite.Core.Features.Students.Queries.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+#endregion
 
 namespace SchoolWebSite.Core.Mapping.Students
 {

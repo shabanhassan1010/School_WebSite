@@ -25,17 +25,18 @@ namespace SchoolWebSite.Core.Bases
         {
 
         }
+        public Response(string message)
+        {
+            Succeeded = false;
+            Message = message;
+        }
         public Response(T data, string message)
         {
             Succeeded = true;
             Message = message;
             Data = data;
         }
-        public Response(string message)
-        {
-            Succeeded = false;
-            Message = message;
-        }
+    
         public Response(string message, bool succeeded)
         {
             Succeeded = succeeded;

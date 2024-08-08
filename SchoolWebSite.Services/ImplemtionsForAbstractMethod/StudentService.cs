@@ -34,6 +34,16 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
                 .Where(x => x.StudID == id).FirstOrDefaultAsync();
             return StudentId;
         }
+
+        public async Task<string> AddAysnc(Student student)
+        {
+            var isFound = await _studentRepository.GetTableNoTracking().Where(x => x.Name == student.Name).FirstOrDefaultAsync();
+            if (isFound != null)
+                return "Exisrt";
+            else
+                await _studentRepository.AddAsync(student);
+                return "Sucess";
+        }
         #endregion
     }
 }
