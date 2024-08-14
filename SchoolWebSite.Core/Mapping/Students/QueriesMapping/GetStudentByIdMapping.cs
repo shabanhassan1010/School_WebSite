@@ -10,7 +10,8 @@ namespace SchoolWebSite.Core.Mapping.Students
         public void GetStudentByIdMapping()
         {
             CreateMap<Student, GetSingleStudentResponse>()
-                .ForMember(dest => dest.DepartmentName, options => options.MapFrom(src => src.Department.DName));
+                .ForMember(dest => dest.DepartmentName, options => options
+                .MapFrom(src => src.Department.DName));
             // dest == GetStudentListResponse
             // src == Student
         }

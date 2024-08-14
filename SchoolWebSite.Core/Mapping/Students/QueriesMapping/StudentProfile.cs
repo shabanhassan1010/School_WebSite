@@ -11,7 +11,8 @@ namespace SchoolWebSite.Core.Mapping.Students     // The same namespace which is
         public void GetStudentListMapping()
         {
             CreateMap<Student, GetSingleStudentResponse>()
-                .ForMember(dest => dest.DepartmentName, options => options.MapFrom(src => src.Department.DName));
+                .ForMember(dest => dest.DepartmentName, options => options
+                .MapFrom(src => src.Department.DName));
             // dest == GetStudentListResponse
             // src == Student
         }

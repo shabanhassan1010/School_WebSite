@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace SchoolWebSite.Core.Bases
 {
-    public class Response <T>
+    public class Response<T>
     {
         #region Fields
         public HttpStatusCode StatusCode { get; set; }
-        public object Meta { get; set; } 
+        public object Meta { get; set; }
         public bool Succeeded { get; set; }
         public string Message { get; set; } = string.Empty;
         public List<string> Errors { get; set; }
@@ -27,7 +27,7 @@ namespace SchoolWebSite.Core.Bases
         }
         public Response(string message)
         {
-            Succeeded = false;
+            //Succeeded = false;
             Message = message;
         }
         public Response(T data, string message)
@@ -36,12 +36,12 @@ namespace SchoolWebSite.Core.Bases
             Message = message;
             Data = data;
         }
-    
+
         public Response(string message, bool succeeded)
         {
             Succeeded = succeeded;
             Message = message;
         }
-            #endregion
+        #endregion
     }
 }

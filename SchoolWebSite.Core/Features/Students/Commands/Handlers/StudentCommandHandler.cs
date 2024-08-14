@@ -8,7 +8,7 @@ using SchoolWebSite.Services.AbstractMethods;
 #endregion
 
 namespace SchoolWebSite.Core.Features.Students.Commands.Handlers
-{                                                          //IRequestHandler>>take Request and Return Response
+{                                                      // IRequestHandler>> take Request and Return Response
     public class StudentCommandHandler : ResponseHandler, IRequestHandler<AddStudentCommand, Response<string>>
     {
         #region Fields
@@ -30,8 +30,8 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Handlers
             var ResponseFromStudentMapper = _mapper.Map<Student>(request);
             var res = await _studentService.AddAysnc(ResponseFromStudentMapper);
             if (res == "Exist")
-                return new Response<string>("Exist");
-            else if (res == "Sucess")
+                return  UnprocessableEntity<string>("Name is Exist");
+            else if (res == "Success")
                 return Created("Added Sucessfully");
             else
                 return BadRequest<string>();

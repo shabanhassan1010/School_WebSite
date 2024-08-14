@@ -11,7 +11,6 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
     {
         #region Field
         private readonly IStudentRepository _studentRepository;
-
         #endregion
 
         #region Constructor
@@ -37,12 +36,13 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
 
         public async Task<string> AddAysnc(Student student)
         {
-            var isFound = await _studentRepository.GetTableNoTracking().Where(x => x.Name == student.Name).FirstOrDefaultAsync();
+            var isFound = await _studentRepository.GetTableNoTracking().Where(x => x.Name.Equals(student.Name)).FirstOrDefaultAsync();
             if (isFound != null)
-                return "Exisrt";
+                return "Exist";
             else
+                // Added Student 
                 await _studentRepository.AddAsync(student);
-                return "Sucess";
+                return "Success";
         }
         #endregion
     }
