@@ -8,5 +8,6 @@ namespace SchoolWebSite.Core.Features.Students.Queries.Models
 {
     public class GetStudentListQuery : IRequest<Response<List<GetSingleStudentResponse>>>
     {
+        // install MediatR Design pattern
     }
 }

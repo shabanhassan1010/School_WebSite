@@ -40,9 +40,16 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
             if (isFound != null)
                 return "Exist";
             else
-                // Added Student 
+                // Add Student 
                 await _studentRepository.AddAsync(student);
-                return "Success";
+            return "Success";
+        }
+
+        public async Task<bool> IsNameExsit(string name)
+        {
+            var student = await _studentRepository.GetTableNoTracking().Where(x => x.Name.Equals(name)).FirstOrDefaultAsync();
+            if (student != null) return false;
+            return true;
         }
         #endregion
     }

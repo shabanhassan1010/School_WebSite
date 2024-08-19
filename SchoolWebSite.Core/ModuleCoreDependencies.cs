@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using SchoolWebSite.Services.AbstractMethods;
-using SchoolWebSite.Services.ImplemtionsForAbstractMethod;
+﻿using FluentValidation;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using SchoolWebSite.Core.Behaviors;
 using System.Reflection;
 
 namespace SchoolWebSite.Core
@@ -13,8 +14,10 @@ namespace SchoolWebSite.Core
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
             // Configration of AutoMapper
             services.AddAutoMapper(Assembly.GetExecutingAssembly()); return services;
-            return services;
+            // Get Validators
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            // 
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         }
     }
 }
- 

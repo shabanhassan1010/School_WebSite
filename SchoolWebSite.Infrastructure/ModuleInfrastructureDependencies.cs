@@ -1,11 +1,6 @@
 ﻿#region
 using Microsoft.Extensions.DependencyInjection;
 using SchoolWebSite.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 #endregion
 
 namespace SchoolWebSite.Infrastructure

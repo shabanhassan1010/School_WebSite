@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using SchoolWebSite.Infrastructure.Data;
-using SchoolWebSite.Infrastructure;
-using SchoolWebSite.Services;
 using SchoolWebSite.Core;
+using SchoolWebSite.Core.MiddleWare;
+using SchoolWebSite.Infrastructure;
+using SchoolWebSite.Infrastructure.Data;
+using SchoolWebSite.Services;
 
 namespace SchoolWebSite.Api
 {
@@ -44,10 +45,13 @@ namespace SchoolWebSite.Api
                 app.UseSwaggerUI();
             }
 
+            #region UseMiddleware
+            app.UseMiddleware<ErrorHandlerMiddleware>();
+            #endregion
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

@@ -17,7 +17,7 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Handlers
         #endregion
 
         #region Constructor
-        public StudentCommandHandler(IStudentService studentService , IMapper mapper)
+        public StudentCommandHandler(IStudentService studentService, IMapper mapper)
         {
             _studentService = studentService;
             _mapper = mapper;
@@ -29,9 +29,7 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Handlers
         {
             var ResponseFromStudentMapper = _mapper.Map<Student>(request);
             var res = await _studentService.AddAysnc(ResponseFromStudentMapper);
-            if (res == "Exist")
-                return  UnprocessableEntity<string>("Name is Exist");
-            else if (res == "Success")
+            if (res.Equals("Success"))
                 return Created("Added Sucessfully");
             else
                 return BadRequest<string>();

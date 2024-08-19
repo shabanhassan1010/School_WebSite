@@ -1,6 +1,5 @@
 ﻿#region
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SchoolWebSite.Core.Bases;
 using System.Net;
@@ -17,6 +16,7 @@ namespace SchoolWebSite.Api.Controllers.Base
         #endregion
         protected IMediator Mediator => _mediatorInstanse ??= HttpContext.RequestServices.GetService<IMediator>()!;
 
+        #region Handle Functions 
         public ObjectResult NewResult<T>(Response<T> response)
         {
             switch (response.StatusCode)
@@ -32,12 +32,13 @@ namespace SchoolWebSite.Api.Controllers.Base
                 case HttpStatusCode.NotFound:
                     return new NotFoundObjectResult(response);
                 case HttpStatusCode.Accepted:
-                    return new AcceptedResult(string.Empty , response);
+                    return new AcceptedResult(string.Empty, response);
                 case HttpStatusCode.UnprocessableEntity:
                     return new UnprocessableEntityObjectResult(response);
                 default:
                     return new NotFoundObjectResult(response);
             }
         }
+        #endregion
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SchoolWebSite.Data.AppMetaData
+﻿namespace SchoolWebSite.Data.AppMetaData
 {
     public static class Router
     {
@@ -15,7 +9,7 @@ namespace SchoolWebSite.Data.AppMetaData
         public static class StudentRouting
         {
             public const string prefix = rule + "Student";       //  Api/V1/Student
-            public const string List = prefix + "/List";         //  Api/V1/Student/List
+            public const string List = prefix + "/GetStudentList";         //  Api/V1/Student/List
             public const string GetById = prefix + singleRoute;  //  Api/V1/Student/{id}
             public const string AddStudent = prefix + "/AddStudent"; //  Api/V1/Student/AddStudent
         }
