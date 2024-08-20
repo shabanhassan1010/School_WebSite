@@ -33,6 +33,17 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
                 .Where(x => x.StudID == id).FirstOrDefaultAsync();
             return StudentId;
         }
+        public async Task<Student> GetByIdAsync(int id)
+        {
+            var StudentId = await _studentRepository.GetTableNoTracking().Where(x => x.StudID == id).FirstOrDefaultAsync();
+            return StudentId;
+        }
+
+        //public async Task<Student> GetStudentByIdToDeleteAsync(int id)
+        //{
+        //    var StudentId = await _studentRepository.GetByIdAsync(id);
+        //    return StudentId;
+        //}
 
         public async Task<string> AddAysnc(Student student)
         {
@@ -52,10 +63,10 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
             return true;
         }
 
-        public async Task<bool> IsNameExsitExcludeSelf(string name, int id)
+        public async Task<bool> IsNameExsitExcludeSelf(int id)
         {
             // must name and id Exist to edit if name or Id is not fount than I can not edit
-            var student = await _studentRepository.GetTableNoTracking().Where(x => x.Name.Equals(name) & !x.StudID.Equals(id)).FirstOrDefaultAsync();
+            var student = await _studentRepository.GetTableNoTracking().Where(x => x.StudID.Equals(id)).FirstOrDefaultAsync();
             if (student == null)
                 return false;
             else
@@ -66,6 +77,30 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
         {
             await _studentRepository.UpdateAsync(student);
             return "Success";
+        }
+
+        public async Task<bool> IsDepartmentIdExsit(int id)
+        {
+            var student = await _studentRepository.GetTableNoTracking().Where(x => x.DID.Equals(id)).FirstOrDefaultAsync();
+            if (student == null)
+                return false;
+            else
+                return true;
+        }
+        public async Task<string> DeleteAysnc(Student student)
+        {
+            var Transactions = _studentRepository.BeginTransaction();
+            try
+            {
+                await _studentRepository.DeleteAsync(student);
+                await Transactions.CommitAsync();
+                return "Success";
+            }
+            catch
+            {
+                await Transactions.RollbackAsync();
+                return "Failed";
+            }
         }
         #endregion
     }

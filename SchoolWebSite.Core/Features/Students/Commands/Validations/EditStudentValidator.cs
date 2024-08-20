@@ -34,9 +34,9 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Validations
         }
         public void ApplyCustomValidationRules()
         {
-            RuleFor(x => x.Name)
-                .MustAsync(async (model, Key, CancellationToken) => !await _studentService.IsNameExsitExcludeSelf(Key, model.Id))
-                .WithMessage("Name is Exist");
+            //RuleFor(x => x.DepartmentId)
+            //    .MustAsync(async (Key, CancellationToken) => await _studentService.IsDepartmentIdExsit(Key))
+            //    .WithMessage("DepartmentId is Not Exist");
         }
         #endregion
     }

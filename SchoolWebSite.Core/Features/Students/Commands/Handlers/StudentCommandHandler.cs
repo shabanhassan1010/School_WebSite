@@ -11,6 +11,7 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Handlers
 {                                                      // IRequestHandler>> take Request and Return Response
     public class StudentCommandHandler : ResponseHandler, IRequestHandler<AddStudentCommand, Response<string>>
                                                         , IRequestHandler<EditStudentCommand, Response<string>>
+                                                        , IRequestHandler<DeleteStudentCommand, Response<string>>
     {
         #region Fields
         private readonly IStudentService _studentService;
@@ -39,16 +40,31 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Handlers
         public async Task<Response<string>> Handle(EditStudentCommand request, CancellationToken cancellationToken)
         {
             // check If Student Exist or not Before Edit 
-            var student = await _studentService.GetStudentByIdAsync(request.Id);
+            var student = await _studentService.GetByIdAsync(request.Id);
             // if Student is not Exist return not found 
             if (student == null)
-                return NotFound<string>("Name is not Found");
+                return NotFound<string>("ID is not Found");
             // else Mapping between Requst and Student
             var studentMapper = _mapper.Map<Student>(request);
             // call servise to Edit 
             var studentService = await _studentService.EditAysnc(studentMapper);
             if (studentService == "Success")
-                return Success($"Edit Successfully {studentMapper.StudID}");
+                return Success($"Edit Successfully Student ID : {studentMapper.StudID}");
+            else
+                return BadRequest<string>();
+        }
+
+        public async Task<Response<string>> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
+        {
+            // check If Student Exist or not Before Edit 
+            var student = await _studentService.GetByIdAsync(request.Id);
+            // if Student is not Exist return not found 
+            if (student == null)
+                return NotFound<string>("Student is not Found");
+            // call servise to make Delete 
+            var res = await _studentService.DeleteAysnc(student);
+            if (res == "Success")
+                return Deleted<string>();
             else
                 return BadRequest<string>();
         }

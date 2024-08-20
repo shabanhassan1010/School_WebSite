@@ -19,6 +19,7 @@ namespace SchoolWebSite.Api.Controllers
             return NewResult(response);
         }
 
+
         [HttpGet(Router.StudentRouting.GetById)]
         public async Task<IActionResult> GetStudentById([FromRoute] int id)
         {
@@ -26,19 +27,27 @@ namespace SchoolWebSite.Api.Controllers
             return NewResult(response);
         }
 
-        // I Use [FromBody] with Edit , Add
 
         [HttpPost(Router.StudentRouting.AddStudent)]
-        public async Task<IActionResult> AddStudent([FromBody] AddStudentCommand command)
+        public async Task<IActionResult> AddStudent([FromBody] AddStudentCommand command) // I Use [FromBody] with Edit , Add
         {
             var response = await Mediator.Send(command);
             return NewResult(response);
         }
+
         [HttpPut(Router.StudentRouting.EditStudent)]
-        public async Task<IActionResult> EditStudent([FromBody] EditStudentCommand command)
+        public async Task<IActionResult> EditStudent([FromBody] EditStudentCommand command) // I Use [FromBody] with Edit , Add
         {
             var response = await Mediator.Send(command);
+            return NewResult(response);
+        }
+
+        [HttpDelete(Router.StudentRouting.Delete)]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            var response = await Mediator.Send(new DeleteStudentCommand(id));
             return NewResult(response);
         }
     }
 }
+
