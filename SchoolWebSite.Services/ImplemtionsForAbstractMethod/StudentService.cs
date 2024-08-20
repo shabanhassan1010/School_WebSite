@@ -51,6 +51,22 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
             if (student != null) return false;
             return true;
         }
+
+        public async Task<bool> IsNameExsitExcludeSelf(string name, int id)
+        {
+            // must name and id Exist to edit if name or Id is not fount than I can not edit
+            var student = await _studentRepository.GetTableNoTracking().Where(x => x.Name.Equals(name) & !x.StudID.Equals(id)).FirstOrDefaultAsync();
+            if (student == null)
+                return false;
+            else
+                return true;
+        }
+
+        public async Task<string> EditAysnc(Student student)
+        {
+            await _studentRepository.UpdateAsync(student);
+            return "Success";
+        }
         #endregion
     }
 }

@@ -26,8 +26,16 @@ namespace SchoolWebSite.Api.Controllers
             return NewResult(response);
         }
 
+        // I Use [FromBody] with Edit , Add
+
         [HttpPost(Router.StudentRouting.AddStudent)]
         public async Task<IActionResult> AddStudent([FromBody] AddStudentCommand command)
+        {
+            var response = await Mediator.Send(command);
+            return NewResult(response);
+        }
+        [HttpPut(Router.StudentRouting.EditStudent)]
+        public async Task<IActionResult> EditStudent([FromBody] EditStudentCommand command)
         {
             var response = await Mediator.Send(command);
             return NewResult(response);

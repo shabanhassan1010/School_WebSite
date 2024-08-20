@@ -12,6 +12,7 @@
             public const string List = prefix + "/GetStudentList";         //  Api/V1/Student/List
             public const string GetById = prefix + singleRoute;  //  Api/V1/Student/{id}
             public const string AddStudent = prefix + "/AddStudent"; //  Api/V1/Student/AddStudent
+            public const string EditStudent = prefix + "/EditStudent";
         }
 
     }

@@ -8,5 +8,7 @@ namespace SchoolWebSite.Services.AbstractMethods
         public Task<Student> GetStudentByIdAsync(int id);
         public Task<string> AddAysnc(Student student);
         public Task<bool> IsNameExsit(String name);
+        public Task<bool> IsNameExsitExcludeSelf(string name, int id);
+        public Task<string> EditAysnc(Student student);
     }
 }

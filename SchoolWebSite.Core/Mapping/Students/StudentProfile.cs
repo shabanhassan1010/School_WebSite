@@ -9,6 +9,7 @@ namespace SchoolWebSite.Core.Mapping.Students
             GetStudentListMapping();
             GetStudentByIdMapping();
             AddStudentCommandMapping();
+            EditStudentCommandMapping();
         }
     }
 }
