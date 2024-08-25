@@ -27,6 +27,8 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Handlers
         #endregion
 
         #region Handles functions 
+
+        #region AddStudentCommand
         public async Task<Response<string>> Handle(AddStudentCommand request, CancellationToken cancellationToken)
         {
             var ResponseFromStudentMapper = _mapper.Map<Student>(request);
@@ -36,7 +38,9 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Handlers
             else
                 return BadRequest<string>();
         }
+        #endregion
 
+        #region EditStudentCommand
         public async Task<Response<string>> Handle(EditStudentCommand request, CancellationToken cancellationToken)
         {
             // check If Student Exist or not Before Edit 
@@ -54,6 +58,9 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Handlers
                 return BadRequest<string>();
         }
 
+        #endregion
+
+        #region DeleteStudentCommand
         public async Task<Response<string>> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
         {
             // check If Student Exist or not Before Edit 
@@ -68,6 +75,8 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Handlers
             else
                 return BadRequest<string>();
         }
+        #endregion
+
         #endregion
     }
 }

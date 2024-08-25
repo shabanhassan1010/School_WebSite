@@ -33,6 +33,14 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Validations
                 .NotEmpty().WithMessage("{PropertyName} Must be Not Empty")
                 .NotNull().WithMessage("{PropertyName} Must be Not Null")
                 .MaximumLength(25).WithMessage("{PropertyName} Length 25 ");
+            RuleFor(x => x.Phone)
+                .NotEmpty().WithMessage("{PropertyName} Must be Not Empty")
+                .NotNull().WithMessage("{PropertyName} Must be Not Null")
+                .MaximumLength(13).WithMessage("{PropertyName} Length 25 ");
+
+            RuleFor(x => x.DepartmentId)
+                .NotEmpty().WithMessage("{PropertyName} Must be Not Empty")
+                .NotNull().WithMessage("{PropertyName} Must be Not Null");
         }
         public void ApplyCustomValidationRules()
         {

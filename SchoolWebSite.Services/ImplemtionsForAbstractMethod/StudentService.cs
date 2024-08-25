@@ -26,6 +26,21 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
             return await _studentRepository.GetAllStudentAsync();
         }
 
+        public IQueryable<Student> GetStudentQuearable()
+        {
+            return _studentRepository.GetTableNoTracking().Include(x => x.Department).AsQueryable();
+        }
+
+        public IQueryable<Student> FilterStudentPaginatedQuery(string serach)
+        {
+            var quearable = _studentRepository.GetTableNoTracking().Include(x => x.Department).AsQueryable();
+            if (quearable != null)
+            {
+                quearable = quearable.Where(x => x.Name.Contains(serach) || x.Address.Contains(serach));
+            }
+            return quearable;
+        }
+
         public async Task<Student> GetStudentByIdAsync(int id)
         {
             var StudentId = await _studentRepository.GetTableNoTracking()
@@ -47,7 +62,7 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
 
         public async Task<string> AddAysnc(Student student)
         {
-            var isFound = await _studentRepository.GetTableNoTracking().Where(x => x.Name.Equals(student.Name)).FirstOrDefaultAsync();
+            var isFound = await _studentRepository.GetTableNoTracking().Where(x => x.StudID.Equals(student.StudID)).FirstOrDefaultAsync();
             if (isFound != null)
                 return "Exist";
             else
@@ -65,7 +80,6 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
 
         public async Task<bool> IsNameExsitExcludeSelf(int id)
         {
-            // must name and id Exist to edit if name or Id is not fount than I can not edit
             var student = await _studentRepository.GetTableNoTracking().Where(x => x.StudID.Equals(id)).FirstOrDefaultAsync();
             if (student == null)
                 return false;

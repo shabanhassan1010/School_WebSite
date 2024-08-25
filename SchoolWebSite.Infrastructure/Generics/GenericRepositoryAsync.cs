@@ -1,11 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using SchoolWebSite.Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolWebSite.Infrastructure.Generics
 {
@@ -41,11 +36,22 @@ namespace SchoolWebSite.Infrastructure.Generics
             return _dbContext.Set<T>().AsNoTracking().AsQueryable();
         }
 
+        public IQueryable<T> GetTableAsTracking()
+        {
+            return _dbContext.Set<T>().AsQueryable();
+        }
+
         public virtual async Task AddRangeAsync(ICollection<T> entities)
         {
             await _dbContext.Set<T>().AddRangeAsync(entities);
             await _dbContext.SaveChangesAsync();
 
+        }
+
+        public virtual async Task UpdateRangeAsync(ICollection<T> entities)
+        {
+            _dbContext.Set<T>().UpdateRange(entities);
+            await _dbContext.SaveChangesAsync();
         }
 
         public virtual async Task<T> AddAsync(T entity)
@@ -93,17 +99,6 @@ namespace SchoolWebSite.Infrastructure.Generics
         public void RollBack()
         {
             _dbContext.Database.RollbackTransaction();
-        }
-
-        public IQueryable<T> GetTableAsTracking()
-        {
-            return _dbContext.Set<T>().AsQueryable();
-        }
-
-        public virtual async Task UpdateRangeAsync(ICollection<T> entities)
-        {
-            _dbContext.Set<T>().UpdateRange(entities);
-            await _dbContext.SaveChangesAsync();
         }
         #endregion
     }

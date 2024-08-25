@@ -14,6 +14,8 @@
             public const string AddStudent = prefix + "/AddStudent"; //  Api/V1/Student/AddStudent
             public const string EditStudent = prefix + "/EditStudent";
             public const string Delete = prefix + singleRoute;
+            public const string Paginated = prefix + "/Paginated";
+
         }
 
     }
