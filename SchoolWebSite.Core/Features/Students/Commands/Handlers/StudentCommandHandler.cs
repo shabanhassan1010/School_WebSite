@@ -14,7 +14,7 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Handlers
                                                         , IRequestHandler<DeleteStudentCommand, Response<string>>
     {
         #region Fields
-        private readonly IStudentService _studentService;
+        private readonly IStudentService _studentService;   // service
         private readonly IMapper _mapper;
         #endregion
 

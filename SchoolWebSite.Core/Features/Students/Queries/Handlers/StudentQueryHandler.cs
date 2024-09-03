@@ -48,10 +48,10 @@ namespace SchoolWebSite.Core.Features.Students.Queries.Handlers
         }
 
         public async Task<PaginatedResult<GetStudentListPaginatedResponse>> Handle(GetStudentPaginatedListQuery request, CancellationToken cancellationToken)
-        {
+        {                                                                                                                                              // I Use Navigation Property for Department So must include Department table
             Expression<Func<Student, GetStudentListPaginatedResponse>> expression = e => new GetStudentListPaginatedResponse(e.StudID, e.Name, e.Address, e.Department.DName);
             //var querable = _studentService.GetStudentQuearable();
-            var FilterQuery = _studentService.FilterStudentPaginatedQuery(request.Search);
+            var FilterQuery = _studentService.FilterStudentPaginatedQuery(request.OrderBy, request.Search);
             var PaginatedList = await FilterQuery.Select(expression).ToPaginatedListAsync(request.PageNumber, request.PageSize);
             return PaginatedList;
         }

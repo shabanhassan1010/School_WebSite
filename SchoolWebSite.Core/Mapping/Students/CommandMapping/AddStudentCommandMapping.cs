@@ -1,19 +1,13 @@
 ﻿#region
 using SchoolProject.Data.Entities;
 using SchoolWebSite.Core.Features.Students.Commands.Models;
-using SchoolWebSite.Core.Features.Students.Queries.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 #endregion
 
 namespace SchoolWebSite.Core.Mapping.Students
 {
     public partial class StudentProfile
     {
-        public  void AddStudentCommandMapping()
+        public void AddStudentCommandMapping() // I will use this method in my StudentProfile Constructor
         {
             CreateMap<AddStudentCommand, Student>()
                 .ForMember(dest => dest.DID, options => options

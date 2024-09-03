@@ -1,4 +1,5 @@
 ﻿using SchoolProject.Data.Entities;
+using SchoolWebSite.Data.Helper;
 
 namespace SchoolWebSite.Services.AbstractMethods
 {
@@ -15,7 +16,7 @@ namespace SchoolWebSite.Services.AbstractMethods
         public Task<string> EditAysnc(Student student);
         public Task<string> DeleteAysnc(Student student);
         public IQueryable<Student> GetStudentQuearable();
-        public IQueryable<Student> FilterStudentPaginatedQuery(string serach);
+        public IQueryable<Student> FilterStudentPaginatedQuery(StudentOrederingEnum Ordering, string serach);
 
     }
 }

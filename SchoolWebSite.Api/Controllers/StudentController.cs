@@ -12,12 +12,15 @@ namespace SchoolWebSite.Api.Controllers
     [ApiController]
     public class StudentController : AppControllerBase
     {
+        #region Controllers
+
         [HttpGet(Router.StudentRouting.List)]
         public async Task<IActionResult> GetStudentList()
         {
             var response = await Mediator.Send(new GetStudentListQuery());
             return NewResult(response);
         }
+
 
         [HttpGet(Router.StudentRouting.Paginated)]
         public async Task<IActionResult> Paginated([FromQuery] GetStudentPaginatedListQuery query)
@@ -42,6 +45,7 @@ namespace SchoolWebSite.Api.Controllers
             return NewResult(response);
         }
 
+
         [HttpPut(Router.StudentRouting.EditStudent)]
         public async Task<IActionResult> EditStudent([FromBody] EditStudentCommand command) // I Use [FromBody] with Edit , Add
         {
@@ -49,12 +53,15 @@ namespace SchoolWebSite.Api.Controllers
             return NewResult(response);
         }
 
+
         [HttpDelete(Router.StudentRouting.Delete)]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var response = await Mediator.Send(new DeleteStudentCommand(id));
             return NewResult(response);
         }
+        #endregion
+
     }
 }
 

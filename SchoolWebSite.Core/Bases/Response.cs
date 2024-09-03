@@ -22,7 +22,7 @@ namespace SchoolWebSite.Core.Bases
         }
         public Response(string message)
         {
-            //Succeeded = false;
+            Succeeded = false;
             Message = message;
         }
         public Response(T data, string message)

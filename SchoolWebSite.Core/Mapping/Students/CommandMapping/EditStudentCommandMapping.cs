@@ -8,11 +8,11 @@ namespace SchoolWebSite.Core.Mapping.Students
         public void EditStudentCommandMapping()
         {
             CreateMap<EditStudentCommand, Student>()
-                .ForMember(dest => dest.DID, options => options.MapFrom(src => src.DepartmentId))
-                .ForMember(dest => dest.StudID, options => options.MapFrom(src => src.Id));
+            .ForMember(dest => dest.DID, options => options.MapFrom(src => src.DepartmentId))
+            .ForMember(dest => dest.StudID, options => options.MapFrom(src => src.Id));
 
-            // dest == GetStudentListResponse
-            // src == Student
+            // dest(destination) == GetStudentListResponse
+            // src(sourse)       == Student
         }
     }
 }

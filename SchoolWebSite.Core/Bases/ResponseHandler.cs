@@ -5,23 +5,32 @@ namespace SchoolWebSite.Core.Bases
 {
     public class ResponseHandler
     {
+        #region Constructor
         public ResponseHandler()
         {
 
         }
+        #endregion
+
+        #region Handle Functions
+        // The method returns a new instance of Response<T>
+        // Generic Method
         public Response<T> Deleted<T>()
         {
             return new Response<T>()
             {
-                StatusCode = HttpStatusCode.OK,
+                StatusCode = HttpStatusCode.OK, // indicating that the deletion operation was successful and the server is responding with a 200 OK status.
                 Succeeded = true,
                 Message = "Deleted Successfully"
             };
         }
 
+        // T entity: The entity that has been successfully added or processed.
+        // object Meta = null: An optional parameter for any additional metadata.This allows you to pass extra information related to the operation.
+
         public Response<T> Success<T>(T entity, object Meta = null)
         {
-            return new Response<T>()
+            return new Response<T>() // returns a new instance of Response<T>, which seems to be a class
             {
                 Data = entity,
                 StatusCode = HttpStatusCode.OK,
@@ -41,7 +50,7 @@ namespace SchoolWebSite.Core.Bases
             };
         }
 
-        public Response<T> BadRequest<T>(string Message = null) 
+        public Response<T> BadRequest<T>(string Message = null)
         {
             return new Response<T>()
             {
@@ -71,16 +80,17 @@ namespace SchoolWebSite.Core.Bases
             };
         }
 
-        public Response<T> Created<T>(T entity, object Meta = null  )
+        public Response<T> Created<T>(T entity, object Meta = null)
         {
             return new Response<T>()
             {
                 Data = entity,
-                StatusCode =HttpStatusCode.Created,
+                StatusCode = HttpStatusCode.Created,
                 Succeeded = true,
                 Message = "Created",
                 Meta = Meta
             };
         }
+        #endregion    
     }
 }

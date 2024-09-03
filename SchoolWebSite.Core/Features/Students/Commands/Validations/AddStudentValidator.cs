@@ -6,7 +6,7 @@ using SchoolWebSite.Services.AbstractMethods;
 
 namespace SchoolWebSite.Core.Features.Students.Commands.Validations
 {
-    public class AddStudentValidator : AbstractValidator<AddStudentCommand>
+    public class AddStudentValidator : AbstractValidator<AddStudentCommand> // FluentValidation on <AddStudentCommand>
     {
         #region Fields
         private readonly IStudentService _studentService;
