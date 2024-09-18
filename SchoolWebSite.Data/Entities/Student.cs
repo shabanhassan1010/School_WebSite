@@ -17,6 +17,9 @@ namespace SchoolProject.Data.Entities
         public int? DID { get; set; }
 
         [ForeignKey("DID")]
+        [InverseProperty(nameof(Department.Students))]
         public virtual Department Department { get; set; }
+        [InverseProperty("Student")]
+        public virtual ICollection<StudentSubject> StudentSubjects { get; set; } = new HashSet<StudentSubject>();
     }
 }
