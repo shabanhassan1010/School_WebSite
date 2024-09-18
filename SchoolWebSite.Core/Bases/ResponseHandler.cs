@@ -1,14 +1,19 @@
-﻿using System.Net;
+﻿using Microsoft.Extensions.Localization;
+using SchoolWebSite.Core.Resourses;
+using System.Net;
 
 
 namespace SchoolWebSite.Core.Bases
 {
     public class ResponseHandler
     {
+        #region
+        private readonly IStringLocalizer<SharedResourses> _stringLocalizer;
+        #endregion
         #region Constructor
-        public ResponseHandler()
+        public ResponseHandler(IStringLocalizer<SharedResourses> stringLocalizer)
         {
-
+            _stringLocalizer = stringLocalizer;
         }
         #endregion
 
@@ -21,7 +26,7 @@ namespace SchoolWebSite.Core.Bases
             {
                 StatusCode = HttpStatusCode.OK, // indicating that the deletion operation was successful and the server is responding with a 200 OK status.
                 Succeeded = true,
-                Message = "Deleted Successfully"
+                Message = _stringLocalizer[SharedResoursesKeys.Deleted]
             };
         }
 
@@ -35,7 +40,7 @@ namespace SchoolWebSite.Core.Bases
                 Data = entity,
                 StatusCode = HttpStatusCode.OK,
                 Succeeded = true,
-                Message = "Added Successfully",
+                Message = _stringLocalizer[SharedResoursesKeys.Success],
                 Meta = Meta
             };
         }
@@ -46,7 +51,7 @@ namespace SchoolWebSite.Core.Bases
             {
                 StatusCode = HttpStatusCode.Unauthorized,
                 Succeeded = true,
-                Message = "UnAuthorized"
+                Message = _stringLocalizer[SharedResoursesKeys.UnAuthorized]
             };
         }
 
@@ -56,7 +61,7 @@ namespace SchoolWebSite.Core.Bases
             {
                 StatusCode = HttpStatusCode.BadRequest,
                 Succeeded = false,
-                Message = Message == null ? "Bad Request" : Message
+                Message = Message == null ? _stringLocalizer[SharedResoursesKeys.BadRequest] : Message
             };
         }
 
@@ -76,7 +81,7 @@ namespace SchoolWebSite.Core.Bases
             {
                 StatusCode = HttpStatusCode.NotFound,
                 Succeeded = false,
-                Message = message == null ? "Not Found" : message
+                Message = message == null ? _stringLocalizer[SharedResoursesKeys.NotFound] : message
             };
         }
 
@@ -87,7 +92,7 @@ namespace SchoolWebSite.Core.Bases
                 Data = entity,
                 StatusCode = HttpStatusCode.Created,
                 Succeeded = true,
-                Message = "Created",
+                Message = _stringLocalizer[SharedResoursesKeys.Created],
                 Meta = Meta
             };
         }

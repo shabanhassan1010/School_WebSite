@@ -16,8 +16,8 @@ using System.Linq.Expressions;
 namespace SchoolWebSite.Core.Features.Students.Queries.Handlers
 {
     public class StudentQueryHandler : ResponseHandler, IRequestHandler<GetStudentListQuery, Response<List<GetSingleStudentResponse>>>,
-                                                            IRequestHandler<GetStudentByIdQuery, Response<GetSingleStudentResponse>>,
-                                                            IRequestHandler<GetStudentPaginatedListQuery, PaginatedResult<GetStudentListPaginatedResponse>>
+                                                        IRequestHandler<GetStudentByIdQuery, Response<GetSingleStudentResponse>>,
+                                                        IRequestHandler<GetStudentPaginatedListQuery, PaginatedResult<GetStudentListPaginatedResponse>>
     {
         #region Fields
         private readonly IStudentService _studentService;
@@ -26,7 +26,7 @@ namespace SchoolWebSite.Core.Features.Students.Queries.Handlers
         #endregion
 
         #region Constructor
-        public StudentQueryHandler(IStudentService studentService, IMapper mapper, IStringLocalizer<SharedResourses> stringLocalizer)
+        public StudentQueryHandler(IStudentService studentService, IMapper mapper, IStringLocalizer<SharedResourses> stringLocalizer) : base(stringLocalizer)
         {
             _studentService = studentService;
             _mapper = mapper;
@@ -39,7 +39,9 @@ namespace SchoolWebSite.Core.Features.Students.Queries.Handlers
         {
             var studentsList = await _studentService.GetStudentListAsync();
             var studentListMapper = _mapper.Map<List<GetSingleStudentResponse>>(studentsList);
-            return Success(studentListMapper);
+            var result = Success(studentListMapper);
+            result.Meta = new { count = studentListMapper.Count() };
+            return result;
         }
 
         public async Task<Response<GetSingleStudentResponse>> Handle(GetStudentByIdQuery request, CancellationToken cancellationToken)
@@ -53,10 +55,11 @@ namespace SchoolWebSite.Core.Features.Students.Queries.Handlers
 
         public async Task<PaginatedResult<GetStudentListPaginatedResponse>> Handle(GetStudentPaginatedListQuery request, CancellationToken cancellationToken)
         {                                                                                                                                              // I Use Navigation Property for Department So must include Department table
-            Expression<Func<Student, GetStudentListPaginatedResponse>> expression = e => new GetStudentListPaginatedResponse(e.StudID, e.Name, e.Address, e.Department.DName);
+            Expression<Func<Student, GetStudentListPaginatedResponse>> expression = e => new GetStudentListPaginatedResponse(e.StudID, e.Localizable(e.NameAr, e.NameEn), e.Address, e.Localizable(e.Department.DNameAr, e.Department.DNameEn), e.Phone);
             //var querable = _studentService.GetStudentQuearable();
             var FilterQuery = _studentService.FilterStudentPaginatedQuery(request.OrderBy, request.Search);
             var PaginatedList = await FilterQuery.Select(expression).ToPaginatedListAsync(request.PageNumber, request.PageSize);
+            PaginatedList.Meta = new { Count = PaginatedList.Data.Count() };
             return PaginatedList;
         }
         #endregion

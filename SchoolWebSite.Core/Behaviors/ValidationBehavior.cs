@@ -1,5 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
+using Microsoft.Extensions.Localization;
+using SchoolWebSite.Core.Resourses;
 
 namespace SchoolWebSite.Core.Behaviors
 {
@@ -7,12 +9,15 @@ namespace SchoolWebSite.Core.Behaviors
     {
         #region Fields
         private readonly IEnumerable<IValidator<TRequest>> _validators; // I Get List From _validators
+        private readonly IStringLocalizer<SharedResourses> _stringLocalizer;
+
         #endregion
 
         #region Constructor
-        public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
+        public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators, IStringLocalizer<SharedResourses> stringLocalizer)
         {
             _validators = validators;
+            _stringLocalizer = stringLocalizer;
         }
         #endregion
 
@@ -29,7 +34,7 @@ namespace SchoolWebSite.Core.Behaviors
 
                 if (failures.Count != 0)
                 {
-                    var message = failures.Select(x => x.PropertyName + ": " + x.ErrorMessage).FirstOrDefault();
+                    var message = failures.Select(x => _stringLocalizer[$"{x.PropertyName}"] + ": " + _stringLocalizer[x.ErrorMessage]).FirstOrDefault();
                     throw new ValidationException(message);
                 }
             }

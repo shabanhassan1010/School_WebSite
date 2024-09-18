@@ -37,7 +37,7 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
             var quearable = _studentRepository.GetTableNoTracking().Include(x => x.Department).AsQueryable();
             if (quearable != null)
             {
-                quearable = quearable.Where(x => x.Name.Contains(serach) || x.Address.Contains(serach));
+                quearable = quearable.Where(x => x.NameAr.Contains(serach) || x.Address.Contains(serach));
             }
             switch (Ordering)
             {
@@ -45,13 +45,13 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
                     quearable = quearable.OrderBy(x => x.StudID);
                     break;
                 case StudentOrederingEnum.Name:
-                    quearable = quearable.OrderBy(x => x.Name);
+                    quearable = quearable.OrderBy(x => x.NameAr);
                     break;
                 case StudentOrederingEnum.Address:
                     quearable = quearable.OrderBy(x => x.Address);
                     break;
                 case StudentOrederingEnum.DepartmentName:
-                    quearable = quearable.OrderBy(x => x.Department.DName);
+                    quearable = quearable.OrderBy(x => x.Department.DNameAr);
                     break;
                 default:
                     quearable = quearable.OrderBy(x => x.StudID);
@@ -92,7 +92,7 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
 
         public async Task<bool> IsNameExsit(string name)
         {
-            var student = await _studentRepository.GetTableNoTracking().Where(x => x.Name.Equals(name)).FirstOrDefaultAsync();
+            var student = await _studentRepository.GetTableNoTracking().Where(x => x.NameAr.Equals(name)).FirstOrDefaultAsync();
             if (student != null) return false;
             return true;
         }
