@@ -14,20 +14,23 @@ namespace SchoolProject.Data.Entities
         //}
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int DID { get; set; }
-        public string DNameAr { get; set; }
-        public string DNameEn { get; set; }
-        public int InsManger { get; set; }
+        [StringLength(30)]
+        public string DNameAr { get; set; } = string.Empty;
+        [StringLength(30)]
+        public string DNameEn { get; set; } = string.Empty;
+        public int? InsManger { get; set; }
 
 
-        [InverseProperty(nameof(Student.Department))]  //   == [InverseProperty("Department")]
+        [InverseProperty("Department")]
         public virtual ICollection<Student> Students { get; set; } = new HashSet<Student>();
 
         [InverseProperty("Department")]
         public virtual ICollection<DepartmetSubject> DepartmentSubjects { get; set; } = new HashSet<DepartmetSubject>();
 
         [InverseProperty("department")]
-        public virtual ICollection<Instructor> Instructors { get; set; } = new HashSet<Instructor>();
+        public virtual ICollection<Instructor> Instructors { get; set; }
 
         [ForeignKey("InsManger")]
         [InverseProperty("deptManger")]

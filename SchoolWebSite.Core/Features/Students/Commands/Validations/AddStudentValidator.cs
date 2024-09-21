@@ -29,7 +29,7 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Validations
         #region Handle Functions  
         public void ApplyValidationRules()
         {
-            RuleFor(x => x.Name)
+            RuleFor(x => x.NameEn)
                 .NotEmpty().WithMessage(_stringLocalizer[SharedResoursesKeys.NotEmpty])
                 .NotNull().WithMessage(_stringLocalizer[SharedResoursesKeys.NotNull])
                 .MaximumLength(20).WithMessage(_stringLocalizer[SharedResoursesKeys.MaximumLength]);
@@ -49,7 +49,7 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Validations
         }
         public void ApplyCustomValidationRules()
         {
-            RuleFor(x => x.Name)
+            RuleFor(x => x.NameEn)
                 .MustAsync(async (Key, CancellationToken) => !await _studentService.IsNameExsit(Key))
                 .WithMessage(_stringLocalizer[SharedResoursesKeys.NotEmpty]);
         }

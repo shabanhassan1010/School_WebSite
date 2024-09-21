@@ -10,9 +10,13 @@ namespace SchoolWebSite.Data.Entities
         public int InsId { get; set; }
         [Key]
         public int SubId { get; set; }
+
+
         [ForeignKey(nameof(InsId))]
         [InverseProperty("InstructorSubjects")]
         public Instructor instructor { get; set; }
+
+
         [ForeignKey(nameof(SubId))]
         [InverseProperty("InstructorSubjects")]
         public Subjects subject { get; set; }

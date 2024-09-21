@@ -13,15 +13,22 @@ namespace SchoolProject.Data.Entities
             InstructorSubjects = new HashSet<InstructorSubject>();
         }
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SubID { get; set; }
         [StringLength(500)]
         public string SubjectNameAr { get; set; } = string.Empty;
         public string SubjectNameEn { get; set; } = string.Empty;
         public DateTime Period { get; set; }
+
+
         [InverseProperty("Subject")]
         public virtual ICollection<StudentSubject> StudentsSubjects { get; set; }
+
+
         [InverseProperty("Subject")]
         public virtual ICollection<DepartmetSubject> DepartmetsSubjects { get; set; }
+
+
         [InverseProperty("subject")]
         public virtual ICollection<InstructorSubject> InstructorSubjects { get; set; }
 

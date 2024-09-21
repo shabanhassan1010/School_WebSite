@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolWebSite.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using SchoolWebSite.Infrastructure.Data;
 namespace SchoolWebSite.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplictionDBContext))]
-    partial class ApplictionDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240921140455_AddConfigrationToAllowNull")]
+    partial class AddConfigrationToAllowNull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,9 +113,6 @@ namespace SchoolWebSite.Infrastructure.Migrations
 
                     b.Property<int>("StudID")
                         .HasColumnType("int");
-
-                    b.Property<decimal?>("Grade")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("SubID", "StudID");
 

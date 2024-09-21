@@ -22,7 +22,7 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Validations
         #region Handle Functions  
         public void ApplyValidationRules()
         {
-            RuleFor(x => x.Name)
+            RuleFor(x => x.NameEn)
                 .NotEmpty().WithMessage("Name Must be Not Empty")
                 .NotNull().WithMessage("Name  Must be Not Null")
                 .MaximumLength(20).WithMessage("MaximumLength Length 20 ");
