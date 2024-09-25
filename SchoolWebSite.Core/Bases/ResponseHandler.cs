@@ -7,9 +7,10 @@ namespace SchoolWebSite.Core.Bases
 {
     public class ResponseHandler
     {
-        #region
+        #region Fields
         private readonly IStringLocalizer<SharedResourses> _stringLocalizer;
         #endregion
+
         #region Constructor
         public ResponseHandler(IStringLocalizer<SharedResourses> stringLocalizer)
         {

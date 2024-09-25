@@ -50,8 +50,11 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Validations
         public void ApplyCustomValidationRules()
         {
             RuleFor(x => x.NameEn)
-                .MustAsync(async (Key, CancellationToken) => !await _studentService.IsNameExsit(Key))
-                .WithMessage(_stringLocalizer[SharedResoursesKeys.NotEmpty]);
+                .MustAsync(async (model, Key, CancellationToken) => !await _studentService.IsNameExsit(Key))
+                .WithMessage(_stringLocalizer[SharedResoursesKeys.IsNameExsit]);
+            RuleFor(x => x.NameAr)
+               .MustAsync(async (model, Key, CancellationToken) => !await _studentService.IsNameExsit(Key))
+               .WithMessage(_stringLocalizer[SharedResoursesKeys.IsNameExsit]);
         }
         #endregion
     }

@@ -1,7 +1,7 @@
 ﻿#region
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Entities;
-using SchoolWebSite.Data.Entities;
+using System.Reflection;
 #endregion
 
 namespace SchoolWebSite.Infrastructure.Data
@@ -29,28 +29,9 @@ namespace SchoolWebSite.Infrastructure.Data
         //public DbSet<InstructorSubject> instructorSubjects { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<DepartmetSubject>()
-                .HasKey(x => new { x.SubID, x.DID });
-
-            modelBuilder.Entity<InstructorSubject>()
-                .HasKey(x => new { x.SubId, x.InsId });
-
-            modelBuilder.Entity<StudentSubject>()
-               .HasKey(x => new { x.SubID, x.StudID });
-
-            modelBuilder.Entity<Instructor>()
-               .HasOne(x => x.Supervisor)
-               .WithMany(x => x.Instructors)
-               .HasForeignKey(x => x.SupervisorId)
-               .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Department>()
-              .HasOne(x => x.Instructor)
-              .WithOne(x => x.deptManger)
-              .HasForeignKey<Department>(x => x.InsManger)
-              .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
         #endregion

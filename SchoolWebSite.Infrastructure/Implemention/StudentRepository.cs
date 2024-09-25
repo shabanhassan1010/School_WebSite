@@ -1,13 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿#region
+using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Entities;
 using SchoolWebSite.Infrastructure.Data;
 using SchoolWebSite.Infrastructure.Generics;
 using SchoolWebSite.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+#endregion
 
 namespace SchoolWebSite.Infrastructure
 {
@@ -18,7 +15,7 @@ namespace SchoolWebSite.Infrastructure
         #endregion
 
         #region Constructor
-        public StudentRepository(ApplictionDBContext dBContext):base(dBContext) //in GenericRepositoryAsync Constructor
+        public StudentRepository(ApplictionDBContext dBContext) : base(dBContext) //in GenericRepositoryAsync Constructor
         {
             _students = dBContext.Set<Student>();
         }

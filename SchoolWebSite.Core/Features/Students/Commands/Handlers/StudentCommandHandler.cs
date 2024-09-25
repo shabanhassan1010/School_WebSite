@@ -36,8 +36,8 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Handlers
         #region AddStudentCommand
         public async Task<Response<string>> Handle(AddStudentCommand request, CancellationToken cancellationToken)
         {
-            var ResponseFromStudentMapper = _mapper.Map<Student>(request);
-            var res = await _studentService.AddAysnc(ResponseFromStudentMapper);
+            var RequestFromStudentMapper = _mapper.Map<Student>(request);
+            var res = await _studentService.AddAysnc(RequestFromStudentMapper);
             if (res.Equals("Success"))
                 return Created("Added Sucessfully");
             else

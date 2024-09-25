@@ -22,6 +22,7 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
         #endregion
 
         #region Handles Functions
+
         public async Task<List<Student>> GetStudentListAsync()
         {
             return await _studentRepository.GetAllStudentAsync();
@@ -67,6 +68,7 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
                 .Where(x => x.StudID == id).FirstOrDefaultAsync();
             return StudentId;
         }
+
         public async Task<Student> GetByIdAsync(int id)
         {
             var StudentId = await _studentRepository.GetTableNoTracking().Where(x => x.StudID == id).FirstOrDefaultAsync();
@@ -106,6 +108,15 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
                 return true;
         }
 
+        public async Task<bool> IsNameExsitExcludeSelf(string nameEn, int id)
+        {
+            //check if the name Exist or not 
+            var student = await _studentRepository.GetTableNoTracking().Where(x => x.NameEn.Equals(nameEn) & !x.StudID.Equals(id)).FirstOrDefaultAsync();
+            if (student == null)
+                return false;
+            return true;
+        }
+
         public async Task<string> EditAysnc(Student student)
         {
             await _studentRepository.UpdateAsync(student);
@@ -136,6 +147,7 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
                 return "Failed";
             }
         }
+
         #endregion
     }
 }
