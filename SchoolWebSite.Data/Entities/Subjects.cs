@@ -1,10 +1,11 @@
-﻿using SchoolWebSite.Data.Entities;
+﻿using SchoolWebSite.Data.Commonds;
+using SchoolWebSite.Data.Entities;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SchoolProject.Data.Entities
 {
-    public class Subjects
+    public class Subjects : GeneralLocalizableEntity
     {
         public Subjects() //Can use Constructor Also and remove the definition of Collections
         {

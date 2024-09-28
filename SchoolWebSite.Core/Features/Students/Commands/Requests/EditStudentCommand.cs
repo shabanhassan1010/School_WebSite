@@ -3,7 +3,7 @@ using SchoolWebSite.Core.Bases;
 
 namespace SchoolWebSite.Core.Features.Students.Commands.Models
 {
-    public class EditStudentCommand : IRequest<Response<string>>
+    public class EditStudentCommand : IRequest<Response<string>>  // Return<String> the Student has edit Successfully
     {
         public int Id { get; set; }  // Pk
         public string NameAr { get; set; } = string.Empty;

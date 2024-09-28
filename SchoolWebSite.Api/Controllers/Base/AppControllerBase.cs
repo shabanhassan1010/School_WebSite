@@ -4,10 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using SchoolWebSite.Core.Bases;
 using System.Net;
 #endregion
-
 namespace SchoolWebSite.Api.Controllers.Base
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class AppControllerBase : ControllerBase
     {

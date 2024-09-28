@@ -31,6 +31,11 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Validations
                 .NotNull().WithMessage(_stringLocalizer[SharedResoursesKeys.NotNull])
                 .MaximumLength(20).WithMessage(_stringLocalizer[SharedResoursesKeys.MaximumLength]);
 
+            RuleFor(x => x.NameAr)
+                .NotEmpty().WithMessage(_stringLocalizer[SharedResoursesKeys.NotEmpty])
+                .NotNull().WithMessage(_stringLocalizer[SharedResoursesKeys.NotNull])
+                .MaximumLength(20).WithMessage(_stringLocalizer[SharedResoursesKeys.MaximumLength]);
+
             RuleFor(x => x.Address)
                 .NotEmpty().WithMessage(_stringLocalizer[SharedResoursesKeys.NotEmpty])
                 .NotNull().WithMessage(_stringLocalizer[SharedResoursesKeys.NotNull])

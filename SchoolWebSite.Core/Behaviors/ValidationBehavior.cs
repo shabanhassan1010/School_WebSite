@@ -28,7 +28,7 @@ namespace SchoolWebSite.Core.Behaviors
             // if there any validations keep going
             if (_validators.Any())
             {
-                var context = new ValidationContext<TRequest>(request);
+                var context = new ValidationContext<TRequest>(request); // Create new Obj from request
                 var validationResults = await Task.WhenAll(_validators.Select(v => v.ValidateAsync(context, cancellationToken))); // lw kol El-validations tmam return [true] else [false]
                 var failures = validationResults.SelectMany(r => r.Errors).Where(f => f != null).ToList();
 

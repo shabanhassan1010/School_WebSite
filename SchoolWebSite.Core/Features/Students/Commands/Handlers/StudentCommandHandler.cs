@@ -49,16 +49,16 @@ namespace SchoolWebSite.Core.Features.Students.Commands.Handlers
         public async Task<Response<string>> Handle(EditStudentCommand request, CancellationToken cancellationToken)
         {
             // check If Student Exist or not Before Edit 
-            var student = await _studentService.GetByIdAsync(request.Id);
+            var CheckstudentIdExistOrNot = await _studentService.GetByIdAsync(request.Id);
             // if Student is not Exist return not found 
-            if (student == null)
+            if (CheckstudentIdExistOrNot == null)
                 return NotFound<string>("ID is not Found");
             // else Mapping between Requst and Student
-            var studentMapper = _mapper.Map(request, student);
+            var studentMapper = _mapper.Map(request, CheckstudentIdExistOrNot);
             // call servise to Edit 
             var studentService = await _studentService.EditAysnc(studentMapper);
             if (studentService == "Success")
-                return Success($"Edit Successfully Student ID : {studentMapper.StudID}");
+                return Success($"Edit Student Successfully ");
             else
                 return BadRequest<string>();
         }

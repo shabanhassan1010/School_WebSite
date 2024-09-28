@@ -1,10 +1,11 @@
 ﻿using SchoolProject.Data.Entities;
+using SchoolWebSite.Data.Commonds;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SchoolWebSite.Data.Entities
 {
-    public class Instructor
+    public class Instructor : GeneralLocalizableEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
