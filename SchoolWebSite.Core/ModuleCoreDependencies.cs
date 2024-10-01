@@ -17,7 +17,7 @@ namespace SchoolWebSite.Core
             // Get Validators
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             // 
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         }
     }
 }

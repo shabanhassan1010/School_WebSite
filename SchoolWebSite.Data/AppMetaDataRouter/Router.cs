@@ -15,15 +15,14 @@
             public const string EditStudent = prefix + "/EditStudent";
             public const string Delete = prefix + singleRoute;
             public const string Paginated = prefix + "/Paginated";
-
         }
         public static class DepartmentRouting
         {
             public const string prefix = rule + "Department";       //  Api/V1/Student
             public const string List = prefix + "/GetDepartmentList";         //  Api/V1/Student/List
             public const string GetById = prefix + singleRoute;  //  Api/V1/Student/{id}
+            public const string GetByIdPaginated = prefix + "/PaginatedId";  //  Api/V1/Student/{id}
 
         }
-
     }
 }

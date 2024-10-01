@@ -22,10 +22,19 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
         public async Task<Department> GetDepartmentById(int id)
         {
             var GetDeptid = await _departmentRepository.GetTableNoTracking().Where(x => x.DID.Equals(id))
-                .Include(x => x.DepartmentSubjects)
+                .Include(x => x.DepartmentSubjects).ThenInclude(x => x.Subject)
                 .Include(x => x.Students)
                 .Include(x => x.Instructors)
                 .Include(x => x.Instructor).FirstOrDefaultAsync();
+            return GetDeptid;
+        }
+
+        public async Task<Department> GetDepartmentPaginatedById(int id)
+        {
+            var GetDeptid = await _departmentRepository.GetTableNoTracking().Where(x => x.DID.Equals(id))
+                            .Include(x => x.DepartmentSubjects)
+                            .Include(x => x.Instructors)
+                            .Include(x => x.Instructor).FirstOrDefaultAsync();
             return GetDeptid;
         }
         #endregion

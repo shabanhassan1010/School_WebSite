@@ -33,6 +33,11 @@ namespace SchoolWebSite.Services.ImplemtionsForAbstractMethod
             return _studentRepository.GetTableNoTracking().Include(x => x.Department).AsQueryable();
         }
 
+        public IQueryable<Student> GetStudentPagintedQuearable(int DID)
+        {
+            return _studentRepository.GetTableNoTracking().Where(x => x.DID.Equals(x.DID)).AsQueryable();
+        }
+
         public IQueryable<Student> FilterStudentPaginatedQuery(StudentOrederingEnum Ordering, string serach)
         {
             var quearable = _studentRepository.GetTableNoTracking().Include(x => x.Department).AsQueryable();

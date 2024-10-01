@@ -7,6 +7,7 @@ namespace SchoolWebSite.Core.Mapping.Departments
         public DepartmentProfile()
         {
             GetStudentByIdMapping();
+            GetStudentPaginatedByIdMapping();
         }
     }
 }

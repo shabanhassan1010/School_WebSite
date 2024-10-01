@@ -16,6 +16,7 @@ namespace SchoolWebSite.Services.AbstractMethods
         public Task<string> EditAysnc(Student student);
         public Task<string> DeleteAysnc(Student student);
         public IQueryable<Student> GetStudentQuearable();
+        public IQueryable<Student> GetStudentPagintedQuearable(int DID);
         public IQueryable<Student> FilterStudentPaginatedQuery(StudentOrederingEnum Ordering, string serach);
 
     }
