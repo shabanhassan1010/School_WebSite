@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SchoolProject.Data.Entities
 {
+    // hello
     public class Department : GeneralLocalizableEntity
     {
         //public Department()
